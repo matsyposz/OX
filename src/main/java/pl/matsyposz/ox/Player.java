@@ -8,8 +8,8 @@ public class Player {
         this.sign = sign;
     }
 
-    void move(GameMap gameMap, int x, int y) {
-        gameMap.map[x][y] = sign;
+    void move(GameMap gameMap, Integer[] coordinates) {
+        gameMap.setSign(coordinates[0], coordinates[1], sign);
     }
 
     Character getSign() {

@@ -2,10 +2,15 @@ package pl.matsyposz.ox;
 
 public class GameMap {
 
-    Character[][] map;
+    private Character[][] map;
 
-    GameMap() {
-        map = new Character[3][3];
+    GameMap(int width, int heigth) {
+        map = new Character[width][heigth];
+    }
+
+    void setSign(int x, int y, Character sign) {
+        if (map[x][y] == null)
+            map[x][y] = sign;
     }
 
     Character check(int x, int y) {
