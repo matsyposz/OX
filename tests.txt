@@ -1,0 +1,4 @@
+1. If user makes a move this should be on saved on a game map. -> DONE
+2. Field cannot be overridden with different sign.
+3. Map is displayed correctly after each move.
+4. User move is loaded from standard input.
