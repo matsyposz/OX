@@ -3,9 +3,11 @@ package pl.matsyposz.ox;
 public class GameMap {
 
     private Character[][] map;
+    int size;
 
     GameMap(int width, int height) {
         map = new Character[width][height];
+        this.size = 3;
     }
 
     Boolean setSign(int x, int y, Character sign) {
@@ -21,6 +23,9 @@ public class GameMap {
     }
 
     Character check(int x, int y) {
-        return map[x][y];
+        if(map[x][y] != null)
+            return map[x][y];
+        else
+            return '-';
     }
 }
