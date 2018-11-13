@@ -10,6 +10,6 @@ public class WinConditions {
 
     public Boolean check() {
         //TODO win conditions check
-        return true;
+        return false;
     }
 }

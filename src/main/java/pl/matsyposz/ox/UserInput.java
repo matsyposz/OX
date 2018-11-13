@@ -1,25 +1,33 @@
 package pl.matsyposz.ox;
 
 import java.io.InputStream;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInput {
 
     private InputStream inputStream;
-    private Scanner scanner;
+    private Integer[] lastMove;
 
     public UserInput(InputStream inputStream) {
         this.inputStream = inputStream;
-        this.scanner = new Scanner(inputStream);
     }
 
     public Integer[] readMove() {
-        System.out.println("Input next move: np. 1 2");
-
         Integer[] coordinates = new Integer[2];
-        coordinates[0] = scanner.nextInt();
-        coordinates[1] = scanner.nextInt();
+        try {
+            Scanner scanner = new Scanner(inputStream);
+            coordinates[0] = scanner.nextInt();
+            coordinates[1] = scanner.nextInt();
+            this.lastMove = coordinates;
 
-        return coordinates;
+            return coordinates;
+        }catch(InputMismatchException e){
+            return null;
+        }
+    }
+
+    public Integer[] getLastMove() {
+        return lastMove;
     }
 }

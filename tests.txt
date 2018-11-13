@@ -2,5 +2,5 @@
 2. Field cannot be overridden with different sign. -> DONE
 3. Map is displayed correctly after each move.
 4. User move is loaded from standard input. -> DONE
-5. Input data should be in correct format.
+5. Input data should be in correct format. -> DONE
 6. Win conditions are checked.

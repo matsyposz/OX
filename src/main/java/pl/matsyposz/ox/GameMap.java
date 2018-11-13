@@ -4,13 +4,20 @@ public class GameMap {
 
     private Character[][] map;
 
-    GameMap(int width, int heigth) {
-        map = new Character[width][heigth];
+    GameMap(int width, int height) {
+        map = new Character[width][height];
     }
 
-    void setSign(int x, int y, Character sign) {
-        if (map[x][y] == null)
-            map[x][y] = sign;
+    Boolean setSign(int x, int y, Character sign) {
+        try {
+            if (map[x][y] == null) {
+                map[x][y] = sign;
+                return true;
+            }
+        }catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("You can not move beyond map");
+        }
+        return false;
     }
 
     Character check(int x, int y) {
