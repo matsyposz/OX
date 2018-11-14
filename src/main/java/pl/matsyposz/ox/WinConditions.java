@@ -2,24 +2,19 @@ package pl.matsyposz.ox;
 
 public class WinConditions {
 
-    private Integer scoresToWin;
     GameMap gameMap;
     UserInput userInput;
 
     WinConditions(GameMap gameMap, UserInput userInput) {
         this.gameMap = gameMap;
-        this.scoresToWin = 3;
         this.userInput = userInput;
     }
 
     public Boolean check(Player player) {
-        int scores = 1;
-
         Character sign = player.getSign();
         int x = userInput.getLastMove()[0];
         int y = userInput.getLastMove()[1];
-
-        int n = gameMap.size;
+        int n = gameMap.width;
 
         //check column
         for (int i = 0; i < n; i++) {

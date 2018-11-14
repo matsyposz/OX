@@ -7,6 +7,7 @@ public class App {
     private static Player playerX;
     private static UserInput userInput;
     private static WinConditions winConditions;
+    private static Display display;
 
     private static void gameInit() {
         gameMap = new GameMap(3, 3);
@@ -14,6 +15,7 @@ public class App {
         playerX = new Player('X', gameMap);
         userInput = new UserInput(System.in);
         winConditions = new WinConditions(gameMap, userInput);
+        display = new Display(System.out, gameMap);
     }
 
     public static void main(String[] args) {
@@ -21,7 +23,7 @@ public class App {
         gameInit();
 
         System.out.println("OX game");
-        System.out.println("Input move in format 'x y' np. '1 2'");
+        System.out.println("Input move in format 'x y' e.g. '1 2'");
 
         int moveCounter = 0;
 
@@ -32,6 +34,7 @@ public class App {
                 System.out.println("Incorrect move, please try again");
             }
             moveCounter += 1;
+            display.showMap();
             if (winConditions.check(playerO)) {
                 System.out.println("PlayerO wins!");
                 break;
@@ -42,6 +45,7 @@ public class App {
                 System.out.println("Incorrect move, please try again");
             }
             moveCounter += 1;
+            display.showMap();
             if (winConditions.check(playerX)) {
                 System.out.println("PlayerX wins!");
                 break;
@@ -50,5 +54,6 @@ public class App {
         }while (moveCounter != 9);
 
         System.out.println("END");
+        display.showMap();
     }
 }

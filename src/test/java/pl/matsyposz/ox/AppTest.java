@@ -3,10 +3,10 @@ package pl.matsyposz.ox;
 import org.testng.annotations.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class AppTest {
 
@@ -112,5 +112,23 @@ public class AppTest {
         assertEquals(winConditions.gameMap.check(0,2), Character.valueOf('X'));
         assertEquals(winConditions.gameMap.check(1,1), Character.valueOf('X'));
         assertTrue(winConditions.check(playerX));
+    }
+
+    @Test
+    public void testDisplay() {
+        //given
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        GameMap gameMap = new GameMap(3,3);
+        Display display = new Display(System.out, gameMap);
+
+        //when
+        gameMap.setSign(1, 1, 'X');
+        display.showMap();
+
+        //then
+        assertEquals(" -  -  - \n -  X  - \n -  -  - \n", outputStream.toString());
+        assertNotEquals(" -  -  - \n -  -  - \n -  -  O \n", outputStream.toString());
     }
 }
