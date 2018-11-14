@@ -5,6 +5,7 @@ public class Player {
     private Character sign;
     private GameMap gameMap;
     private String playerName;
+    int score;
 
     Player(Character sign, GameMap gameMap) {
         this.sign = sign;
@@ -27,5 +28,18 @@ public class Player {
 
     Character getSign() {
         return sign;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void addScore(String result) {
+        if (result.equals("WIN")) {
+            this.score += 3;
+        }
+        else if (result.equals("DRAW")) {
+            this.score += 1;
+        }
     }
 }

@@ -30,4 +30,11 @@ public class GameMap {
         else
             return '-';
     }
+
+    public void reset() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++)
+                map[i][j] = null;
+        }
+    }
 }

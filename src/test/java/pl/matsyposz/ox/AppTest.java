@@ -1,10 +1,12 @@
 package pl.matsyposz.ox;
 
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import static org.testng.Assert.*;
 
@@ -130,5 +132,43 @@ public class AppTest {
         //then
         assertEquals(" -  -  - \n -  X  - \n -  -  - \n", outputStream.toString());
         assertNotEquals(" -  -  - \n -  -  - \n -  -  O \n", outputStream.toString());
+    }
+
+    @Ignore
+    @Test
+    public void testGameFlow() {
+        //given
+        String data = "1 1";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        UserInput userInput = new UserInput(System.in);
+
+        GameMap gameMap = new GameMap(3, 3);
+        Display display = new Display(System.out, gameMap);
+        ArrayList<Player> players = new ArrayList<>();
+        players.add(new Player('O', gameMap));
+        players.add(new Player('X', gameMap));
+        WinConditions winConditions = new WinConditions(gameMap, userInput);
+
+        GameController gameController = new GameController(gameMap, display, winConditions, players, userInput);
+
+        //when
+        gameController.start();
+
+        //then
+
+    }
+
+    @Ignore
+    @Test
+    public void testScore() {
+        //given
+        GameMap gameMap = new GameMap(3, 3);
+        ArrayList<Player> players = new ArrayList<>();
+        players.add(new Player('O', gameMap));
+        players.add(new Player('X', gameMap));
+
+        //then
+
+
     }
 }

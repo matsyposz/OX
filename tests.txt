@@ -4,5 +4,5 @@
 4. User move is loaded from standard input. -> DONE
 5. Input data should be in correct format. -> DONE
 6. Win conditions are checked. -> DONE
-7. Communicates are displayed correctly to standard output (out, err, logs, etc.)
+7. Messages are displayed correctly - standard output (out, err, logs, etc.)
 8. Game ends after three maps. Win 3 points, Draw 1 point and Lose 0.
