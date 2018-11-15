@@ -77,7 +77,7 @@ public class WinConditions {
         i = 1;
 
         while ((x + i) < gameMap.width && (y + i) < gameMap.height) {
-            if (gameMap.check(x - i, y - i).equals(sign) && scores < scoresToWin) {
+            if (gameMap.check(x + i, y + 1).equals(sign) && scores < scoresToWin) {
                 scores += 1;
                 i += 1;
             } else

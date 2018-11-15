@@ -7,7 +7,7 @@ import pl.matsyposz.ox.utils.PlayerComparator;
 import java.util.Collections;
 import java.util.List;
 
-public class GameController {
+class GameController {
 
     private Display display;
     private List<Player> players;
@@ -28,7 +28,7 @@ public class GameController {
         this.matchCounter = 1;
     }
 
-    public void start() {
+    void start() {
 
         System.out.println("OX game");
         System.out.println("Input move in format 'x y' e.g. '1 2'");

@@ -30,11 +30,11 @@ public class Player {
         return sign;
     }
 
-    public String getPlayerName() {
+    String getPlayerName() {
         return playerName;
     }
 
-    public void addScore(String result) {
+    void addScore(String result) {
         if (result.equals("WIN")) {
             this.score += 3;
         }
