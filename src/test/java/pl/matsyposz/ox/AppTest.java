@@ -1,16 +1,47 @@
 package pl.matsyposz.ox;
 
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
+import pl.matsyposz.ox.io.Display;
+import pl.matsyposz.ox.io.UserInput;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.when;
 import static org.testng.Assert.*;
 
 public class AppTest {
+
+    @Mock
+    private GameMap gameMap;
+
+    @Mock
+    private Display display;
+
+    @Mock
+    private UserInput userInput;
+
+    @Spy
+    private Player playerO = new Player('O', gameMap);
+
+    @Spy
+    private Player playerX = new Player('X', gameMap);
+
+    @Mock
+    private WinConditions winConditions;
+
+    @BeforeSuite
+    public void init() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void testMove() {
@@ -73,50 +104,6 @@ public class AppTest {
     }
 
     @Test
-    public void testWinColumn() {
-        // given
-        String data = "1 2";
-        System.setIn(new ByteArrayInputStream(data.getBytes()));
-        UserInput userInput = new UserInput(System.in);
-        GameMap gameMap = new GameMap(3, 3);
-        Player playerO = new Player('O', gameMap);
-        WinConditions winConditions = new WinConditions(gameMap, userInput);
-
-        // when
-        gameMap.setSign(1, 0, 'O');
-        gameMap.setSign(1, 1, 'O');
-        playerO.move(userInput.readMove());
-
-        // then
-        assertEquals(winConditions.gameMap.check(1,0), Character.valueOf('O'));
-        assertEquals(winConditions.gameMap.check(1,1), Character.valueOf('O'));
-        assertEquals(winConditions.gameMap.check(1,2), Character.valueOf('O'));
-        assertTrue(winConditions.check(playerO));
-    }
-
-    @Test
-    public void testWinAntiDiag() {
-        // given
-        String data = "1 1";
-        System.setIn(new ByteArrayInputStream(data.getBytes()));
-        UserInput userInput = new UserInput(System.in);
-        GameMap gameMap = new GameMap(3, 3);
-        Player playerX = new Player('X', gameMap);
-        WinConditions winConditions = new WinConditions(gameMap, userInput);
-
-        // when
-        gameMap.setSign(2, 0, 'X');
-        gameMap.setSign(0, 2, 'X');
-        playerX.move(userInput.readMove());
-
-        // then
-        assertEquals(winConditions.gameMap.check(2,0), Character.valueOf('X'));
-        assertEquals(winConditions.gameMap.check(0,2), Character.valueOf('X'));
-        assertEquals(winConditions.gameMap.check(1,1), Character.valueOf('X'));
-        assertTrue(winConditions.check(playerX));
-    }
-
-    @Test
     public void testDisplay() {
         //given
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -134,38 +121,34 @@ public class AppTest {
         assertNotEquals(" -  -  - \n -  -  - \n -  -  O \n", outputStream.toString());
     }
 
-    @Ignore
     @Test
-    public void testGameFlow() {
+    public void shouldTakeThreeMatchesToEndGame() {
         //given
-        String data = "1 1";
-        System.setIn(new ByteArrayInputStream(data.getBytes()));
-        UserInput userInput = new UserInput(System.in);
-
-        GameMap gameMap = new GameMap(3, 3);
-        Display display = new Display(System.out, gameMap);
         ArrayList<Player> players = new ArrayList<>();
-        players.add(new Player('O', gameMap));
-        players.add(new Player('X', gameMap));
-        WinConditions winConditions = new WinConditions(gameMap, userInput);
+        players.add(playerO);
+        players.add(playerX);
 
         GameController gameController = new GameController(gameMap, display, winConditions, players, userInput);
 
         //when
+        when(playerO.move(userInput.readMove())).thenReturn(true);
+        when(playerX.move(userInput.readMove())).thenReturn(true);
+        when(winConditions.check(playerO)).thenReturn(false);
+        when(winConditions.check(playerX)).thenReturn(true);
+
         gameController.start();
 
         //then
-
+        assertEquals(gameController.matchCounter, 4);
     }
 
     @Ignore
     @Test
     public void testScore() {
         //given
-        GameMap gameMap = new GameMap(3, 3);
         ArrayList<Player> players = new ArrayList<>();
-        players.add(new Player('O', gameMap));
-        players.add(new Player('X', gameMap));
+        players.add(playerO);
+        players.add(playerX);
 
         //then
 

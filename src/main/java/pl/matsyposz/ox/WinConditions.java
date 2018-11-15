@@ -1,5 +1,7 @@
 package pl.matsyposz.ox;
 
+import pl.matsyposz.ox.io.UserInput;
+
 public class WinConditions {
 
     GameMap gameMap;

@@ -1,4 +1,4 @@
-package pl.matsyposz.ox;
+package pl.matsyposz.ox.io;
 
 import java.io.InputStream;
 import java.util.InputMismatchException;

@@ -3,8 +3,8 @@ package pl.matsyposz.ox;
 public class GameMap {
 
     private Character[][] map;
-    int width;
-    int height;
+    public int width;
+    public int height;
 
     GameMap(int width, int height) {
         map = new Character[width][height];
@@ -24,7 +24,7 @@ public class GameMap {
         return false;
     }
 
-    Character check(int x, int y) {
+    public Character check(int x, int y) {
         if(map[x][y] != null)
             return map[x][y];
         else

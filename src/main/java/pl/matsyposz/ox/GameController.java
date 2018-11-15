@@ -1,5 +1,9 @@
 package pl.matsyposz.ox;
 
+import pl.matsyposz.ox.io.Display;
+import pl.matsyposz.ox.io.UserInput;
+import pl.matsyposz.ox.utils.PlayerComparator;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -11,7 +15,7 @@ public class GameController {
     private WinConditions winConditions;
     private GameMap gameMap;
     private Boolean nextMatch;
-    private int matchCounter;
+    int matchCounter;
     private int moves;
 
     GameController(GameMap gameMap, Display display, WinConditions winConditions, List<Player> players, UserInput userInput) {
@@ -63,7 +67,6 @@ public class GameController {
 
     private void endTurn() {
         if (matchCounter == 4) {
-            // check points, end game
             int result = new PlayerComparator().compare(players.get(0), players.get(1));
             if (result > 0) {
                 System.out.println(players.get(0).getPlayerName() + " won game!");
@@ -71,14 +74,14 @@ public class GameController {
                 System.out.println(players.get(1).getPlayerName() + " won game!");
             } else
                 System.out.println("The game ends with a draw");
-            System.exit(0);
         } else if (nextMatch) {
             gameMap.reset();
             moves = 0;
             System.out.println("Next match");
             Collections.reverse(players);
             nextMatch = false;
-        }
-        turn();
+            turn();
+        } else
+            turn();
     }
 }
