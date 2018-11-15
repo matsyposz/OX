@@ -24,7 +24,7 @@ public class Display {
     private void printRow(int column) {
 
         for (int row = 0; row < gameMap.height; row++) {
-            printStream.print(" " + gameMap.check(row, column) + " ");
+            printStream.print(" " + gameMap.check(column, row) + " ");
         }
         printStream.println();
     }
