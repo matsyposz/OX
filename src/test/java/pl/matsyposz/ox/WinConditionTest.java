@@ -55,7 +55,7 @@ public class WinConditionTest {
 
     public void testWinDiag() {
         // given
-        String data = "2 2";
+        String data = "1 1";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         UserInput userInput = new UserInput(System.in);
         GameMap gameMap = new GameMap(3, 3);
@@ -64,7 +64,7 @@ public class WinConditionTest {
 
         // when
         gameMap.setSign(0, 0, 'X');
-        gameMap.setSign(1, 1, 'X');
+        gameMap.setSign(2, 2, 'X');
         playerX.move(userInput.readMove());
 
         // then
@@ -92,6 +92,27 @@ public class WinConditionTest {
         assertEquals(winConditions.gameMap.check(2,0), Character.valueOf('X'));
         assertEquals(winConditions.gameMap.check(0,2), Character.valueOf('X'));
         assertEquals(winConditions.gameMap.check(1,1), Character.valueOf('X'));
+        assertTrue(winConditions.check(playerX));
+    }
+
+    public void testWinOnRectangularMap() {
+        // given
+        String data = "2 3";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        UserInput userInput = new UserInput(System.in);
+        GameMap gameMap = new GameMap(12, 54);
+        Player playerX = new Player('X', gameMap);
+        WinConditions winConditions = new WinConditions(gameMap, userInput);
+
+        // when
+        gameMap.setSign(1, 2, 'X');
+        gameMap.setSign(0, 1, 'X');
+        playerX.move(userInput.readMove());
+
+        // then
+        assertEquals(winConditions.gameMap.check(1,2), Character.valueOf('X'));
+        assertEquals(winConditions.gameMap.check(0,1), Character.valueOf('X'));
+        assertEquals(winConditions.gameMap.check(2,3), Character.valueOf('X'));
         assertTrue(winConditions.check(playerX));
     }
 }

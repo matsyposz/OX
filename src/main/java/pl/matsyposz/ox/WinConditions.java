@@ -6,54 +6,109 @@ public class WinConditions {
 
     GameMap gameMap;
     UserInput userInput;
+    private final int scoresToWin = 3;
 
     WinConditions(GameMap gameMap, UserInput userInput) {
         this.gameMap = gameMap;
         this.userInput = userInput;
     }
 
+    //TODO refactor 'x, y'
     public Boolean check(Player player) {
         Character sign = player.getSign();
         int x = userInput.getLastMove()[0];
         int y = userInput.getLastMove()[1];
-        int n = gameMap.width;
 
-        //check column
-        for (int i = 0; i < n; i++) {
-            if (!gameMap.check(x, i).equals(sign))
+        return checkRow(x, y, sign) || checkColumn(x, y, sign) || checkDiagonal(x, y, sign) || checkAntiDiagonal(x, y, sign);
+    }
+
+    private boolean checkColumn(int x, int y, Character sign) {
+        int scores = 1;
+
+        for (int i = y - 1; i >= 0; i--) {
+            if (gameMap.check(x, i).equals(sign) && scores < scoresToWin) {
+                scores += 1;
+            } else
                 break;
-            else if (i == n - 1)
-                return true;
         }
 
-        //check row
-        for (int i = 0; i < n; i++) {
-            if (!gameMap.check(i, y).equals(sign))
+        for (int i = y + 1; i < gameMap.height; i++) {
+            if (gameMap.check(x, i).equals(sign) && scores < scoresToWin){
+                scores += 1;
+            } else
                 break;
-            else if (i == n - 1)
-                return true;
         }
 
-        //check diagonal
-        if (x == y) {
-            for (int i = 0; i < n; i++){
-                if (!gameMap.check(i, i).equals(sign))
-                    break;
-                else if (i == n - 1)
-                    return true;
-            }
+        return scores == scoresToWin;
+    }
+
+    private boolean checkRow(int x, int y, Character sign) {
+        int scores = 1;
+
+        for (int i = x - 1; i >= 0; i--) {
+            if (gameMap.check(i, y).equals(sign) && scores < scoresToWin) {
+                scores += 1;
+            } else
+                break;
         }
 
-        //check antidiagonal
-        if (x + y == n - 1) {
-            for (int i = 0; i < n; i++){
-                if (!gameMap.check(i, n - 1 - i).equals(sign))
-                    break;
-                else if (i == n - 1)
-                    return true;
-            }
+        for (int i = x + 1; i < gameMap.width; i++) {
+            if (gameMap.check(i, y).equals(sign) && scores < scoresToWin){
+                scores += 1;
+            } else
+                break;
         }
 
-        return false;
+        return scores == scoresToWin;
+    }
+
+    private boolean checkDiagonal(int x, int y, Character sign) {
+        int scores = 1;
+        int i = 1;
+
+        while ((x - i) >= 0 && (y - i) >= 0) {
+            if (gameMap.check(x - i, y - i).equals(sign) && scores < scoresToWin) {
+                scores += 1;
+                i += 1;
+            } else
+                break;
+        }
+
+        i = 1;
+
+        while ((x + i) < gameMap.width && (y + i) < gameMap.height) {
+            if (gameMap.check(x - i, y - i).equals(sign) && scores < scoresToWin) {
+                scores += 1;
+                i += 1;
+            } else
+                break;
+        }
+
+        return scores == scoresToWin;
+    }
+
+    private boolean checkAntiDiagonal(int x, int y, Character sign) {
+        int scores = 1;
+        int i = 1;
+
+        while ((x + i) < gameMap.width && (y - i) >= 0) {
+            if (gameMap.check(x + i, y - i).equals(sign) && scores < scoresToWin) {
+                scores += 1;
+                i += 1;
+            } else
+                break;
+        }
+
+        i = 1;
+
+        while ((x - i) >= 0 && (y + i) < gameMap.height) {
+            if (gameMap.check(x - i, y + i).equals(sign) && scores < scoresToWin) {
+                scores += 1;
+                i += 1;
+            } else
+                break;
+        }
+
+        return scores == scoresToWin;
     }
 }
