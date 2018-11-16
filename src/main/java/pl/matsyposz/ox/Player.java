@@ -1,5 +1,7 @@
 package pl.matsyposz.ox;
 
+import pl.matsyposz.ox.utils.MatchResults;
+
 public class Player {
 
     private Character sign;
@@ -34,13 +36,8 @@ public class Player {
         return playerName;
     }
 
-    void addScore(String result) {
-        if (result.equals("WIN")) {
-            this.score += 3;
-        }
-        else if (result.equals("DRAW")) {
-            this.score += 1;
-        }
+    void addScore(MatchResults result) {
+        this.score = result.getValue();
     }
 
     public int getScore() {

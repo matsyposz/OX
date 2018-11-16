@@ -2,6 +2,7 @@ package pl.matsyposz.ox;
 
 import pl.matsyposz.ox.io.Display;
 import pl.matsyposz.ox.io.UserInput;
+import pl.matsyposz.ox.utils.MatchResults;
 import pl.matsyposz.ox.utils.PlayerComparator;
 
 import java.util.Collections;
@@ -50,14 +51,14 @@ class GameController {
 
             if (winConditions.check(player)) {
                 display.print(player.getPlayerName(), "matchWin");
-                player.addScore("WIN");
+                player.addScore(MatchResults.WIN);
                 nextMatch = true;
                 matchCounter += 1;
                 break;
             } else if (moves == (gameMap.width * gameMap.height)) {
                 display.print("matchDraw");
-                players.get(0).addScore("DRAW");
-                players.get(1).addScore("DRAW");
+                players.get(0).addScore(MatchResults.DRAW);
+                players.get(1).addScore(MatchResults.DRAW);
                 nextMatch = true;
                 matchCounter += 1;
                 break;
