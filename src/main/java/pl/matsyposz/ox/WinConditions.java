@@ -13,7 +13,6 @@ public class WinConditions {
         this.userInput = userInput;
     }
 
-    //TODO refactor 'x, y'
     public Boolean check(Player player) {
         Character sign = player.getSign();
         int x = userInput.getLastMove()[0];

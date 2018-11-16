@@ -4,7 +4,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Ignore;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pl.matsyposz.ox.io.Display;
 import pl.matsyposz.ox.io.UserInput;
@@ -12,19 +12,27 @@ import pl.matsyposz.ox.io.UserInput;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
-import static org.mockito.Mockito.when;
 import static org.testng.Assert.*;
 
 public class AppTest {
 
-    @Mock
-    private GameMap gameMap;
+    @DataProvider(name = "OK")
+    public static Object[][] data() {
+
+        return new Object[][] {
+                {3,3,"0 0,0 1,1 1,0 2,2 2,0 0,0 1,1 1,0 2,2 2,0 0,0 1,1 1,0 2,2 2"},
+
+
+        };
+    }
+
 
     @Mock
-    private Display display;
+    private GameMap gameMap;
 
     @Mock
     private UserInput userInput;
@@ -69,31 +77,33 @@ public class AppTest {
                 "2  O  -  - \n", outputStream.toString());
     }
 
-    @Ignore
-    @Test
-    public void shouldTakeThreeMatchesToEndGame() {
+    @Test(dataProvider = "OK")
+    public void shouldTakeThreeMatchesToEndGame(Integer width, Integer height, String data) {
         //this is used only to keep console clear during test runs:
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
+        //ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+      //  System.setOut(new PrintStream(outputStream));
         //given
+
+        String[] splitMoves = data.split(",");
+
+        LinkedList<String> moves = new LinkedList<>();
+        for (String move: splitMoves)
+            moves.add(move);
+
+        // tutaj rozmiar
+        GameMap gameMap = new GameMap(width, height);
+        // tutaj ruchy
+        UserInput userInput = new UserInput(System.in, moves);
+        Display display = new Display(System.out, ResourceBundle.getBundle("pl.matsyposz.ox.language.LanguageResource_en", new Locale("en","US")), gameMap);
+        WinConditions winConditions = new WinConditions(gameMap, userInput);
+
         ArrayList<Player> players = new ArrayList<>();
-        players.add(playerO);
-        players.add(playerX);
+        players.add(new Player('O', gameMap));
+        players.add(new Player('X', gameMap));
 
-        HashMap<String, Integer> mapSize = new HashMap<>();
-        mapSize.put("width", 3);
-        mapSize.put("height", 3);
-
-        GameController gameController = new GameController(players, userInput);
+        GameController gameController = new GameController(gameMap, display, winConditions, players, userInput);
 
         //when
-        when(playerO.move(userInput.readMove())).thenReturn(true);
-        when(playerX.move(userInput.readMove())).thenReturn(true);
-        when(winConditions.check(playerO)).thenReturn(false);
-        when(winConditions.check(playerX)).thenReturn(true);
-        when(userInput.language()).thenReturn(ResourceBundle.getBundle("pl.matsyposz.ox.language.LanguageResource_en"));
-        when(userInput.mapSize()).thenReturn(mapSize);
-
         gameController.start();
 
         //then

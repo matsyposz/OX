@@ -15,10 +15,13 @@ public class Player {
         this.playerName = "Player" + sign;
     }
 
-    Player(String playerName, Character sign, GameMap gameMap) {
+    public Player(String playerName, Character sign, GameMap gameMap) {
         this.sign = sign;
         this.gameMap = gameMap;
-        this.playerName = playerName;
+        if (playerName == null)
+            this.playerName = "Player" + sign;
+        else
+            this.playerName = playerName;
     }
 
     public Boolean move(Integer[] coordinates) {
@@ -32,7 +35,7 @@ public class Player {
         return sign;
     }
 
-    String getPlayerName() {
+    public String getPlayerName() {
         return playerName;
     }
 

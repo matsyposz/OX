@@ -13,7 +13,8 @@ public class LanguageResource_en extends ListResourceBundle {
                         "One win is worth 3 points and draw 1 point for each player.\n" +
                         "You need to provide move in format:\n" +
                         "'x y' where x is the column number from 0 to map width - 1\n" +
-                        "and y is the row number from 0 to map height - 1\n"
+                        "and y is the row number from 0 to map height - 1.\n" +
+                                "Type '/exit' during match to quit game.\n"
                 },
                 {"input",
                         "Please provide map size in format 'width height'\n" +
@@ -26,7 +27,7 @@ public class LanguageResource_en extends ListResourceBundle {
                 {"gameDraw","Game ends with a draw.\n"},
                 {"nextMatch","Starting next match...\n"},
                 {"moveBeyondMap","You can not move beyond map, please provide number in range 0 to map width/height - 1.\n"},
-                {"player","Player "},
+                {"userName","Please type user name:\n"},
         };
     }
 }

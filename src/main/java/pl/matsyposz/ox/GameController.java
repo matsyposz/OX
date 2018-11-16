@@ -7,7 +7,6 @@ import pl.matsyposz.ox.utils.PlayerComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 class GameController {
 
@@ -17,6 +16,7 @@ class GameController {
     private WinConditions winConditions;
     private GameMap gameMap;
     private Boolean nextMatch;
+    private Boolean testData;
     int matchCounter;
     private int moves;
 
@@ -25,9 +25,14 @@ class GameController {
         this.nextMatch = false;
         this.matchCounter = 1;
         this.players = new ArrayList<>();
+        this.testData = false;
     }
 
-    GameController(ArrayList<Player> players, UserInput userInput) {
+    GameController(GameMap gameMap, Display display, WinConditions winConditions, ArrayList<Player> players, UserInput userInput) {
+        this.gameMap = gameMap;
+        this.display = display;
+        this.winConditions = winConditions;
+        this.testData = true;
         this.userInput = userInput;
         this.nextMatch = false;
         this.matchCounter = 1;
@@ -35,24 +40,31 @@ class GameController {
     }
 
     void start() {
-        System.out.println("Please choose language: \n press enter - english, \n type 'pl' - polish");
-        this.display = new Display(System.out, userInput.language(), gameMap);
+        if (!testData) {
+            System.out.println("Please choose language: \n press enter - english, \n type 'pl' - polish");
+            this.display = new Display(System.out, userInput.language(), gameMap);
 
-        display.print("description");
-        display.print("input");
-        this.gameMap = new GameMap(userInput.mapSize());
-        display.setGameMap(gameMap);
-        display.showMap();
+            display.print("description");
+            System.out.println();
+            display.print("input");
+            this.gameMap = new GameMap(userInput.mapSize());
+            display.setGameMap(gameMap);
+            display.showMap();
 
-        // players input name and whos gonna start
-        if (players.size() == 0) {
-            players.add(new Player('O', gameMap));
-            players.add(new Player('X', gameMap));
+            // players input name and whos gonna start
+            display.print("userName");
+            String player1Name = userInput.name();
+
+            display.print("userName");
+            String player2Name = userInput.name();
+            if (players.size() == 0) {
+                players.add(new Player(player1Name, 'O', gameMap));
+                players.add(new Player(player2Name, 'X', gameMap));
+            }
+
+            // win conditions input here
+            winConditions = new WinConditions(gameMap, userInput);
         }
-
-        // win conditions input here
-        winConditions = new WinConditions(gameMap, userInput);
-
         turn();
     }
 
@@ -61,8 +73,14 @@ class GameController {
         for(Player player: players) {
             display.print(player.getPlayerName(), "move");
 
-            while (!player.move(userInput.readMove())) {
-                display.print("wrongMove");
+            if(!testData) {
+                while (!player.move(userInput.readMove())) {
+                    display.print("wrongMove");
+                }
+            } else {
+                while (!player.move(userInput.readMove(userInput.moves))) {
+                    display.print("wrongMove");
+                }
             }
 
             moves += 1;

@@ -12,11 +12,13 @@ public class LanguageResource_pl extends ListResourceBundle {
                         "Wygrany mecz wart jest 3 punkty, a remis 1 punkt dla każdego gracza.\n" +
                         "Należy wprowadzać kolejne ruchy w poprawnym formacie:\n" +
                         "'x y' gdzie x to numer kolumny od 0 do szerokości mapy - 1,\n" +
-                        "a y to numer wiersza od 0 do wysokości mapy - 1\n"
+                        "a y to numer wiersza od 0 do wysokości mapy - 1\n" +
+                        "Można zakończyć grę wpisując podczas meczu '/exit'.\n"
                 },
                 {"input",
                         "Proszę wprowadzić rozmiar mapy w formacie 'szerokość wysokość'\n" +
-                        "lub wcisnąć enter aby ustawić mape na domyślny rozmiar 3x3.\n"},
+                        "lub wcisnąć enter aby ustawić mape na domyślny rozmiar 3x3.\n" +
+                                "Maksymalny rozmiar szerokości/wysokości to 200\n"},
                 {"move"," podaje ruch:\n"},
                 {"wrongMove","Ten ruch jest niepoprawny, proszę podać inną pozycję:\n"},
                 {"matchWin","Wygrywa "},
@@ -25,7 +27,7 @@ public class LanguageResource_pl extends ListResourceBundle {
                 {"gameDraw","Gra kończy się remisem.\n"},
                 {"nextMatch","Rozpoczęcie kolejnego meczu...\n"},
                 {"moveBeyondMap","Nie możesz poruszać się poza granice mapy, proszę wprowadź numer od 0 do szerokości/wysokości mapy - 1\n"},
-                {"player","Gracz "},
+                {"userName","Proszę podać nazwę gracza:\n"},
         };
     }
 }

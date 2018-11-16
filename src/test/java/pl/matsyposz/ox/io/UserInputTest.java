@@ -130,4 +130,34 @@ public class UserInputTest {
         assertEquals(gameMap.width, 3);
         assertEquals(gameMap.height, 3);
     }
+
+    public void shouldProvideCorrectPlayerName() {
+        // given
+        String data = "8751569837146187";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        UserInput userInput = new UserInput(System.in);
+        GameMap gameMap = new GameMap(3,3);
+
+        // when
+        String actual = userInput.name();
+        Player player = new Player(actual,'O', gameMap);
+
+        // then
+        assertEquals(player.getPlayerName(), actual);
+    }
+
+    public void shouldSetDefaultPlayerNameIfInputIsEmpty() {
+        // given
+        String data = "";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        UserInput userInput = new UserInput(System.in);
+        GameMap gameMap = new GameMap(3,3);
+
+        // when
+        String actual = userInput.name();
+        Player player = new Player(actual,'O', gameMap);
+
+        // then
+        assertEquals(player.getPlayerName(), "PlayerO");
+    }
 }
