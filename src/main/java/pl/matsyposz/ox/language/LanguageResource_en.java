@@ -28,7 +28,10 @@ public class LanguageResource_en extends ListResourceBundle {
                 {"gameDraw","Game ends with a draw.\n"},
                 {"nextMatch","Starting next match...\n"},
                 {"moveBeyondMap","You can not move beyond map, please provide number in range 0 to map width/height - 1.\n"},
-                {"userName","Please type user name:\n"},
+                {"userName1","Please type first user name:\n"},
+                {"userName2","Please type second user name:\n"},
+                {"scoresToWin","Please provide how many sign in line you need to win.\n" +
+                        "Default value is 3.\n"},
         };
     }
 }

@@ -142,4 +142,18 @@ public class UserInput {
         }
         return null;
     }
+
+    public Integer scoresToWin() {
+        try {
+            Scanner scanner = new Scanner(inputStream);
+
+           return scanner.nextInt();
+
+        } catch(InputMismatchException e) {
+            //e.printStackTrace();
+        } catch (NoSuchElementException e) {
+
+        }
+        return 3;
+    }
 }

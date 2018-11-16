@@ -52,18 +52,20 @@ class GameController {
             display.showMap();
 
             // players input name and whos gonna start
-            display.print("userName");
+            display.print("userName1");
             String player1Name = userInput.name();
 
-            display.print("userName");
+            display.print("userName2");
             String player2Name = userInput.name();
+
             if (players.size() == 0) {
                 players.add(new Player(player1Name, 'O', gameMap));
                 players.add(new Player(player2Name, 'X', gameMap));
             }
 
             // win conditions input here
-            winConditions = new WinConditions(gameMap, userInput);
+            display.print("scoresToWin");
+            winConditions = new WinConditions(gameMap, userInput, userInput.scoresToWin());
         }
         turn();
     }

@@ -28,7 +28,10 @@ public class LanguageResource_pl extends ListResourceBundle {
                 {"gameDraw","Gra kończy się remisem.\n"},
                 {"nextMatch","Rozpoczęcie kolejnego meczu...\n"},
                 {"moveBeyondMap","Nie możesz poruszać się poza granice mapy, proszę wprowadź numer od 0 do szerokości/wysokości mapy - 1\n"},
-                {"userName","Proszę podać nazwę gracza:\n"},
+                {"userName1","Proszę podać nazwę gracza, który będzie rozpoczynał grę:\n"},
+                {"userName2","Proszę podać nazwę drugiego gracza:\n"},
+                {"scoresToWin","Proszę wprowadzić liczbę znaków w lini potrzebnych do zwycięstwa:.\n" +
+                        "Domyślna wartość to 3.\n"},
         };
     }
 }

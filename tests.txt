@@ -9,8 +9,8 @@
 9. Map can be rectangular. -> DONE
 10. Scores are calculated properly (?) -> DONE
 11. The size of the map can be provided by the user. -> DONE
-12. User can choose who is gonna start.
+12. User can choose who is gonna start. -> DONE
 13. User can provide win conditions.
 14. Localization (polish, english). -> DONE
 15. players names can be provided by the user. -> DONE
-16. Fix game controller test (mock).
+16. Fix game controller test -> DONE

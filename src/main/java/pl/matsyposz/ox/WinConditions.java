@@ -6,11 +6,18 @@ class WinConditions {
 
     final GameMap gameMap;
     private final UserInput userInput;
-    private final int scoresToWin = 3;
+    private final int scoresToWin;
 
     WinConditions(GameMap gameMap, UserInput userInput) {
         this.gameMap = gameMap;
         this.userInput = userInput;
+        this.scoresToWin = 3;
+    }
+
+    WinConditions(GameMap gameMap, UserInput userInput, int scoresToWin) {
+        this.gameMap = gameMap;
+        this.userInput = userInput;
+        this.scoresToWin = scoresToWin;
     }
 
     public Boolean check(Player player) {
