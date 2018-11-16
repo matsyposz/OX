@@ -12,6 +12,7 @@ import pl.matsyposz.ox.io.UserInput;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import static org.mockito.Mockito.when;
@@ -79,7 +80,11 @@ public class AppTest {
         players.add(playerO);
         players.add(playerX);
 
-        GameController gameController = new GameController(userInput);
+        HashMap<String, Integer> mapSize = new HashMap<>();
+        mapSize.put("width", 3);
+        mapSize.put("height", 3);
+
+        GameController gameController = new GameController(players, userInput);
 
         //when
         when(playerO.move(userInput.readMove())).thenReturn(true);
@@ -87,11 +92,11 @@ public class AppTest {
         when(winConditions.check(playerO)).thenReturn(false);
         when(winConditions.check(playerX)).thenReturn(true);
         when(userInput.language()).thenReturn(ResourceBundle.getBundle("pl.matsyposz.ox.language.LanguageResource_en"));
+        when(userInput.mapSize()).thenReturn(mapSize);
 
         gameController.start();
 
         //then
         assertEquals(gameController.matchCounter, 4);
     }
-
 }

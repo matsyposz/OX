@@ -13,3 +13,4 @@
 13. User can provide win conditions.
 14. Localization (polish, english). -> DONE
 15. players names can be provided by the user.
+16. Fix game controller test (mock)

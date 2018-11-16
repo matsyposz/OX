@@ -7,6 +7,7 @@ import pl.matsyposz.ox.utils.PlayerComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 class GameController {
 
@@ -26,6 +27,13 @@ class GameController {
         this.players = new ArrayList<>();
     }
 
+    GameController(ArrayList<Player> players, UserInput userInput) {
+        this.userInput = userInput;
+        this.nextMatch = false;
+        this.matchCounter = 1;
+        this.players = players;
+    }
+
     void start() {
         System.out.println("Please choose language: \n press enter - english, \n type 'pl' - polish");
         this.display = new Display(System.out, userInput.language(), gameMap);
@@ -37,8 +45,10 @@ class GameController {
         display.showMap();
 
         // players input name and whos gonna start
-        players.add(new Player('O', gameMap));
-        players.add(new Player('X', gameMap));
+        if (players.size() == 0) {
+            players.add(new Player('O', gameMap));
+            players.add(new Player('X', gameMap));
+        }
 
         // win conditions input here
         winConditions = new WinConditions(gameMap, userInput);
