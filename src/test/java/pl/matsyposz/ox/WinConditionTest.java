@@ -11,6 +11,8 @@ import static org.testng.Assert.assertTrue;
 @Test
 public class WinConditionTest {
 
+    //TODO parametrized tests here also
+
     public void testWinColumn() {
         // given
         String data = "1 2";

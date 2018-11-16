@@ -18,9 +18,8 @@ class GameController {
     int matchCounter;
     private int moves;
 
-    GameController(GameMap gameMap, Display display, WinConditions winConditions, List<Player> players, UserInput userInput) {
+    GameController(GameMap gameMap, WinConditions winConditions, List<Player> players, UserInput userInput) {
         this.gameMap = gameMap;
-        this.display = display;
         this.winConditions = winConditions;
         this.players = players;
         this.userInput = userInput;
@@ -29,32 +28,34 @@ class GameController {
     }
 
     void start() {
+        System.out.println("Please choose language: \n press enter - english, \n type 'pl' - polish");
+        this.display = new Display(System.out, userInput.language(), gameMap);
 
-        System.out.println("OX game");
-        System.out.println("Input move in format 'x y' e.g. '1 2'");
+        display.print("description");
+
         turn();
     }
 
     private void turn() {
 
         for(Player player: players) {
-            System.out.println(player.getPlayerName() + " move:");
+            display.print(player.getPlayerName(), "move");
 
             while (!player.move(userInput.readMove())) {
-                System.out.println("Incorrect move, please try again");
+                display.print("wrongMove");
             }
 
             moves += 1;
             display.showMap();
 
             if (winConditions.check(player)) {
-                System.out.println(player.getPlayerName() + " wins match!");
+                display.print(player.getPlayerName(), "matchWin");
                 player.addScore("WIN");
                 nextMatch = true;
                 matchCounter += 1;
                 break;
             } else if (moves == (gameMap.width * gameMap.height)) {
-                System.out.println("DRAW!");
+                display.print("matchDraw");
                 players.get(0).addScore("DRAW");
                 players.get(1).addScore("DRAW");
                 nextMatch = true;
@@ -69,15 +70,15 @@ class GameController {
         if (matchCounter == 4) {
             int result = new PlayerComparator().compare(players.get(0), players.get(1));
             if (result > 0) {
-                System.out.println(players.get(0).getPlayerName() + " won game!");
+                display.print(players.get(0).getPlayerName(), "gameWin");
             } else if (result < 0) {
-                System.out.println(players.get(1).getPlayerName() + " won game!");
+                display.print(players.get(1).getPlayerName(), "gameWin");
             } else
-                System.out.println("The game ends with a draw");
+                display.print("gameDraw");
         } else if (nextMatch) {
             gameMap.reset();
             moves = 0;
-            System.out.println("Next match");
+            display.print("nextMatch");
             Collections.reverse(players);
             nextMatch = false;
             turn();

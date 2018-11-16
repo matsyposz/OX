@@ -8,6 +8,7 @@
 8. Game ends after three maps. Win 3 points, Draw 1 point and Lose 0. -> DONE
 9. Map can be rectangular. -> DONE
 10. Scores are calculated properly (?)
-11. The size of the map can be provided by the user.
+11. The size of the map and players names can be provided by the user.
 12. User can choose who is gonna start.
 13. User can provide win conditions.
+14. Localization (polish, english).

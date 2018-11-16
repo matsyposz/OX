@@ -7,7 +7,7 @@ public class Player {
     private String playerName;
     private int score;
 
-    Player(Character sign, GameMap gameMap) {
+    public Player(Character sign, GameMap gameMap) {
         this.sign = sign;
         this.gameMap = gameMap;
         this.playerName = "Player" + sign;
@@ -19,14 +19,14 @@ public class Player {
         this.playerName = playerName;
     }
 
-    Boolean move(Integer[] coordinates) {
+    public Boolean move(Integer[] coordinates) {
         if (coordinates != null)
             return gameMap.setSign(coordinates[0], coordinates[1], sign);
         else
             return false;
     }
 
-    Character getSign() {
+    public Character getSign() {
         return sign;
     }
 

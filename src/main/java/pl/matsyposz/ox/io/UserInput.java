@@ -2,6 +2,8 @@ package pl.matsyposz.ox.io;
 
 import java.io.InputStream;
 import java.util.InputMismatchException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class UserInput {
@@ -29,5 +31,20 @@ public class UserInput {
 
     public Integer[] getLastMove() {
         return lastMove;
+    }
+
+    public ResourceBundle language() {
+
+        try {
+            Scanner scanner = new Scanner(inputStream);
+
+            if (scanner.nextLine().equals("pl")) {
+                return ResourceBundle.getBundle("pl.matsyposz.ox.language.LanguageResource_pl", new Locale("pl", "PL"));
+            }
+
+        } catch(InputMismatchException e) {
+            //e.printStackTrace();
+        }
+        return ResourceBundle.getBundle("pl.matsyposz.ox.language.LanguageResource_en", new Locale("en", "US"));
     }
 }
