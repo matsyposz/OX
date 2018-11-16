@@ -14,7 +14,9 @@ public class LanguageResource_pl extends ListResourceBundle {
                         "'x y' gdzie x to numer kolumny od 0 do szerokości mapy - 1,\n" +
                         "a y to numer wiersza od 0 do wysokości mapy - 1\n"
                 },
-                {"input","Proszę podać następny ruch w formacie 'x y'\n"},
+                {"input",
+                        "Proszę wprowadzić rozmiar mapy w formacie 'szerokość wysokość'\n" +
+                        "lub wcisnąć enter aby ustawić mape na domyślny rozmiar 3x3.\n"},
                 {"move"," podaje ruch:\n"},
                 {"wrongMove","Ten ruch jest niepoprawny, proszę podać inną pozycję:\n"},
                 {"matchWin","Wygrywa "},

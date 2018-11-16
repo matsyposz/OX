@@ -31,7 +31,9 @@ public class LanguageTest {
         display.print("input");
 
         // then
-        assertEquals(outputStream.toString(), "Please type your move in correct format 'column row'\n");
+        assertEquals(outputStream.toString(),
+                "Please provide map size in format 'width height'\n" +
+                "Or press enter to set map to default size 3x3.\n");
     }
 
     public void shouldDisplayMessagesInPolish() {

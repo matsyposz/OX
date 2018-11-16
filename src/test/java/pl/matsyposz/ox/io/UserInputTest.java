@@ -101,4 +101,33 @@ public class UserInputTest {
         // then
         assertEquals(outputStream.toString(), "Match ends with a draw.\n");
     }
+
+
+    public void shouldSetCustomMapSize() {
+        // given
+        String data = "200 200";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        UserInput userInput = new UserInput(System.in);
+
+        // when
+        GameMap gameMap = new GameMap(userInput.mapSize());
+
+        // then
+        assertEquals(gameMap.width, 200);
+        assertEquals(gameMap.height, 200);
+    }
+
+    public void shouldSetMapTo3x3BecauseCustomMapIsTooLarge() {
+        // given
+        String data = "201 200";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        UserInput userInput = new UserInput(System.in);
+
+        // when
+        GameMap gameMap = new GameMap(userInput.mapSize());
+
+        // then
+        assertEquals(gameMap.width, 3);
+        assertEquals(gameMap.height, 3);
+    }
 }

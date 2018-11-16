@@ -52,9 +52,13 @@ public class Display {
         }
     }
 
+    public void setGameMap(GameMap gameMap) {
+        this.gameMap = gameMap;
+    }
+
     private void printRow(int row) {
 
-        for (int column = 0; column < gameMap.height; column++) {
+        for (int column = 0; column < gameMap.width; column++) {
             printStream.print(" " + gameMap.check(column, row) + " ");
         }
         printStream.println();
@@ -63,7 +67,7 @@ public class Display {
     private void printColumnNum() {
 
         printStream.print("   ");
-        for (int column = 0; column < gameMap.height; column++) {
+        for (int column = 0; column < gameMap.width; column++) {
             printStream.print(column + "  ");
         }
         printStream.println();

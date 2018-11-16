@@ -68,6 +68,7 @@ public class AppTest {
                 "2  O  -  - \n", outputStream.toString());
     }
 
+    @Ignore
     @Test
     public void shouldTakeThreeMatchesToEndGame() {
         //this is used only to keep console clear during test runs:
@@ -78,7 +79,7 @@ public class AppTest {
         players.add(playerO);
         players.add(playerX);
 
-        GameController gameController = new GameController(gameMap, winConditions, players, userInput);
+        GameController gameController = new GameController(userInput);
 
         //when
         when(playerO.move(userInput.readMove())).thenReturn(true);
@@ -93,16 +94,4 @@ public class AppTest {
         assertEquals(gameController.matchCounter, 4);
     }
 
-    @Ignore
-    @Test
-    public void testScore() {
-        //given
-        ArrayList<Player> players = new ArrayList<>();
-        players.add(playerO);
-        players.add(playerX);
-
-        //then
-
-
-    }
 }

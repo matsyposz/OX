@@ -1,10 +1,7 @@
 package pl.matsyposz.ox.io;
 
 import java.io.InputStream;
-import java.util.InputMismatchException;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.Scanner;
+import java.util.*;
 
 public class UserInput {
 
@@ -46,5 +43,35 @@ public class UserInput {
             //e.printStackTrace();
         }
         return ResourceBundle.getBundle("pl.matsyposz.ox.language.LanguageResource_en", new Locale("en", "US"));
+    }
+
+    public HashMap<String, Integer> mapSize() {
+        HashMap<String, Integer> mapSize = new HashMap<>();
+
+        try {
+            Scanner scanner = new Scanner(inputStream);
+
+            String input = scanner.nextLine();
+            if (!input.equals("")) {
+                int width = Integer.parseInt(input.split(" ")[0]);
+                int height = Integer.parseInt(input.split(" ")[1]);
+
+                if (width <= 200 && height <= 200) {
+                    mapSize.put("width", width);
+                    mapSize.put("height", height);
+                } else
+                    throw new InputMismatchException();
+
+                return mapSize;
+            }
+        } catch(InputMismatchException e) {
+            //e.printStackTrace();
+        } catch (NumberFormatException e) {
+
+        }
+        mapSize.put("width", 3);
+        mapSize.put("height", 3);
+
+        return mapSize;
     }
 }

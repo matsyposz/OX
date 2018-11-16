@@ -5,13 +5,13 @@ import pl.matsyposz.ox.io.UserInput;
 import pl.matsyposz.ox.utils.MatchResults;
 import pl.matsyposz.ox.utils.PlayerComparator;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 class GameController {
 
     private Display display;
-    private List<Player> players;
+    private ArrayList<Player> players;
     private UserInput userInput;
     private WinConditions winConditions;
     private GameMap gameMap;
@@ -19,13 +19,11 @@ class GameController {
     int matchCounter;
     private int moves;
 
-    GameController(GameMap gameMap, WinConditions winConditions, List<Player> players, UserInput userInput) {
-        this.gameMap = gameMap;
-        this.winConditions = winConditions;
-        this.players = players;
+    GameController(UserInput userInput) {
         this.userInput = userInput;
         this.nextMatch = false;
         this.matchCounter = 1;
+        this.players = new ArrayList<>();
     }
 
     void start() {
@@ -33,7 +31,17 @@ class GameController {
         this.display = new Display(System.out, userInput.language(), gameMap);
 
         display.print("description");
+        display.print("input");
+        this.gameMap = new GameMap(userInput.mapSize());
+        display.setGameMap(gameMap);
         display.showMap();
+
+        // players input name and whos gonna start
+        players.add(new Player('O', gameMap));
+        players.add(new Player('X', gameMap));
+
+        // win conditions input here
+        winConditions = new WinConditions(gameMap, userInput);
 
         turn();
     }

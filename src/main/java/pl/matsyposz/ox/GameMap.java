@@ -1,5 +1,7 @@
 package pl.matsyposz.ox;
 
+import java.util.HashMap;
+
 public class GameMap {
 
     private Character[][] map;
@@ -7,9 +9,15 @@ public class GameMap {
     public int height;
 
     public GameMap(int width, int height) {
-        map = new Character[width][height];
         this.width = width;
         this.height = height;
+        map = new Character[width][height];
+    }
+
+    public GameMap(HashMap<String, Integer> mapSize) {
+        this.width = mapSize.get("width");
+        this.height = mapSize.get("height");
+        map = new Character[width][height];
     }
 
     public Boolean setSign(int x, int y, Character sign) {
