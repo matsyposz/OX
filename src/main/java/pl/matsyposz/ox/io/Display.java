@@ -45,7 +45,9 @@ public class Display {
 
     public void showMap() {
 
+        printColumnNum();
         for (int row = 0; row < gameMap.height; row++) {
+            printStream.print(row + " ");
             printRow(row);
         }
     }
@@ -54,6 +56,15 @@ public class Display {
 
         for (int column = 0; column < gameMap.height; column++) {
             printStream.print(" " + gameMap.check(column, row) + " ");
+        }
+        printStream.println();
+    }
+
+    private void printColumnNum() {
+
+        printStream.print("   ");
+        for (int column = 0; column < gameMap.height; column++) {
+            printStream.print(column + "  ");
         }
         printStream.println();
     }

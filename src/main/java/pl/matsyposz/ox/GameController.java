@@ -33,6 +33,7 @@ class GameController {
         this.display = new Display(System.out, userInput.language(), gameMap);
 
         display.print("description");
+        display.showMap();
 
         turn();
     }

@@ -52,12 +52,20 @@ public class AppTest {
         Display display = new Display(System.out, userInput.language(), gameMap);
 
         //when
-        gameMap.setSign(1, 1, 'X');
+        gameMap.setSign(2, 0, 'X');
         display.showMap();
 
         //then
-        assertEquals(" -  -  - \n -  X  - \n -  -  - \n", outputStream.toString());
-        assertNotEquals(" -  -  - \n -  -  - \n -  -  O \n", outputStream.toString());
+        assertEquals(
+                "   0  1  2  \n" +
+                "0  -  -  X \n" +
+                "1  -  -  - \n" +
+                "2  -  -  - \n", outputStream.toString());
+        assertNotEquals(
+                "   0  1  2  \n" +
+                "0  -  -  - \n" +
+                "1  -  -  - \n" +
+                "2  O  -  - \n", outputStream.toString());
     }
 
     @Test
