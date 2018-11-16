@@ -2,7 +2,7 @@ package pl.matsyposz.ox;
 
 import pl.matsyposz.ox.io.UserInput;
 
-public class App {
+class App {
     private static GameController gameController;
 
     private static void gameInit() {

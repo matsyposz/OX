@@ -9,9 +9,9 @@ import java.util.ResourceBundle;
 
 public class Display {
 
-    private PrintStream printStream;
+    private final PrintStream printStream;
     private GameMap gameMap;
-    private ResourceBundle resourceBundle;
+    private final ResourceBundle resourceBundle;
 
     public Display(PrintStream printStream, ResourceBundle resourceBundle, GameMap gameMap) {
         this.printStream = printStream;

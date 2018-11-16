@@ -11,12 +11,12 @@ import java.util.Collections;
 class GameController {
 
     private Display display;
-    private ArrayList<Player> players;
-    private UserInput userInput;
+    private final ArrayList<Player> players;
+    private final UserInput userInput;
     private WinConditions winConditions;
     private GameMap gameMap;
     private Boolean nextMatch;
-    private Boolean testData;
+    private final Boolean testData;
     int matchCounter;
     private int moves;
 

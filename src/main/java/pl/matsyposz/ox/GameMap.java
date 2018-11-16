@@ -4,9 +4,9 @@ import java.util.HashMap;
 
 public class GameMap {
 
-    private Character[][] map;
-    public int width;
-    public int height;
+    private final Character[][] map;
+    public final int width;
+    public final int height;
 
     public GameMap(int width, int height) {
         this.width = width;

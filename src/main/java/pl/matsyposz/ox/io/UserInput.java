@@ -7,7 +7,7 @@ import java.util.*;
 
 public class UserInput {
 
-    private InputStream inputStream;
+    private final InputStream inputStream;
     private Integer[] lastMove;
     public Queue<String> moves;
 
@@ -88,7 +88,7 @@ public class UserInput {
         } catch(InputMismatchException e) {
             //e.printStackTrace();
         } catch (NoSuchElementException e) {
-            System.exit(0);
+
         }
         return ResourceBundle.getBundle("pl.matsyposz.ox.language.LanguageResource_en", new Locale("en", "US"));
     }
@@ -117,7 +117,7 @@ public class UserInput {
         } catch (NumberFormatException e) {
 
         } catch (NoSuchElementException e) {
-            System.exit(0);
+
         }
         mapSize.put("width", 3);
         mapSize.put("height", 3);
@@ -142,5 +142,4 @@ public class UserInput {
         }
         return null;
     }
-
 }

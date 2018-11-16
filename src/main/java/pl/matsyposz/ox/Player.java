@@ -4,9 +4,9 @@ import pl.matsyposz.ox.utils.MatchResults;
 
 public class Player {
 
-    private Character sign;
-    private GameMap gameMap;
-    private String playerName;
+    private final Character sign;
+    private final GameMap gameMap;
+    private final String playerName;
     private int score;
 
     public Player(Character sign, GameMap gameMap) {

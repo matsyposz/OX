@@ -2,10 +2,10 @@ package pl.matsyposz.ox;
 
 import pl.matsyposz.ox.io.UserInput;
 
-public class WinConditions {
+class WinConditions {
 
-    GameMap gameMap;
-    UserInput userInput;
+    final GameMap gameMap;
+    private final UserInput userInput;
     private final int scoresToWin = 3;
 
     WinConditions(GameMap gameMap, UserInput userInput) {

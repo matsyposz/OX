@@ -2,6 +2,7 @@ package pl.matsyposz.ox.language;
 
 import java.util.ListResourceBundle;
 
+@SuppressWarnings("WeakerAccess")
 public class LanguageResource_en extends ListResourceBundle {
 
     @Override
