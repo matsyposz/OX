@@ -17,7 +17,7 @@ public class LanguageResource_pl extends ListResourceBundle {
                 {"input","Proszę podać następny ruch w formacie 'x y'\n"},
                 {"move"," podaje ruch:\n"},
                 {"wrongMove","Ten ruch jest niepoprawny, proszę podać inną pozycję:\n"},
-                {"matchWin"," wygrywa mecz!\n"},
+                {"matchWin","Wygrywa "},
                 {"matchDraw","Mecz kończy się remisem.\n"},
                 {"gameWin"," wygrywa gre, gratulacje!\n"},
                 {"gameDraw","Gra kończy się remisem.\n"},

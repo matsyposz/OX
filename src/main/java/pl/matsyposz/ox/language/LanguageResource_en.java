@@ -17,7 +17,7 @@ public class LanguageResource_en extends ListResourceBundle {
                 {"input","Please type your move in correct format 'column row'\n"},
                 {"move"," move:\n"},
                 {"wrongMove","This move is not allowed, please try again:\n"},
-                {"matchWin"," wins match!\n"},
+                {"matchWin","The match was won by "},
                 {"matchDraw","Match ends with a draw.\n"},
                 {"gameWin"," won game, congrats!\n"},
                 {"gameDraw","Game ends with a draw.\n"},

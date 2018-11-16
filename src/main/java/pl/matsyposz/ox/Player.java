@@ -37,7 +37,7 @@ public class Player {
     }
 
     void addScore(MatchResults result) {
-        this.score = result.getValue();
+        this.score += result.getValue();
     }
 
     public int getScore() {

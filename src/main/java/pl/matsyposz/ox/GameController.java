@@ -50,8 +50,8 @@ class GameController {
             display.showMap();
 
             if (winConditions.check(player)) {
-                display.print(player.getPlayerName(), "matchWin");
                 player.addScore(MatchResults.WIN);
+                display.printScores(player.getPlayerName(), players);
                 nextMatch = true;
                 matchCounter += 1;
                 break;
