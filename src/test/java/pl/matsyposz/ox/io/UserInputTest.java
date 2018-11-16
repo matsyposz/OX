@@ -5,6 +5,8 @@ import pl.matsyposz.ox.GameMap;
 import pl.matsyposz.ox.Player;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -66,5 +68,37 @@ public class UserInputTest {
 
         // then
         assertEquals(gameMap.check(0, 0), Character.valueOf('O'));
+    }
+
+    public void shouldSetResourceBundleToPolish() {
+        // given
+        String data = "pl";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        UserInput userInput = new UserInput(System.in);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        // when
+        Display display = new Display(System.out, userInput.language(), new GameMap(3,3));
+        display.print("matchDraw");
+
+        // then
+        assertEquals(outputStream.toString(), "Mecz kończy się remisem.\n");
+    }
+
+    public void shouldSetResourceBundleToEnglish() {
+        // given
+        String data = "%@^#%!^#%@!^";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        UserInput userInput = new UserInput(System.in);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        // when
+        Display display = new Display(System.out, userInput.language(), new GameMap(3,3));
+        display.print("matchDraw");
+
+        // then
+        assertEquals(outputStream.toString(), "Match ends with a draw.\n");
     }
 }
