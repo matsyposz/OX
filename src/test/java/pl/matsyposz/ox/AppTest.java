@@ -1,7 +1,6 @@
 package pl.matsyposz.ox;
 
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import pl.matsyposz.ox.io.Display;
 import pl.matsyposz.ox.io.UserInput;

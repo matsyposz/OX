@@ -8,6 +8,7 @@ import pl.matsyposz.ox.GameMap;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
@@ -23,7 +24,7 @@ public class DisplayTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    public void testDisplay() {
+    public void testDisplay() throws UnsupportedEncodingException {
         //given
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
@@ -40,11 +41,11 @@ public class DisplayTest {
                 "   0  1  2  \n" +
                         "0  -  -  X \n" +
                         "1  -  -  - \n" +
-                        "2  -  -  - \n", outputStream.toString());
+                        "2  -  -  - \n", outputStream.toString("UTF-8"));
         assertNotEquals(
                 "   0  1  2  \n" +
                         "0  -  -  - \n" +
                         "1  -  -  - \n" +
-                        "2  O  -  - \n", outputStream.toString());
+                        "2  O  -  - \n", outputStream.toString("UTF-8"));
     }
 }

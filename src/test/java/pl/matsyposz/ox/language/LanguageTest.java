@@ -7,6 +7,7 @@ import pl.matsyposz.ox.io.Display;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -20,7 +21,7 @@ public class LanguageTest {
 
     //TODO parametrized tests here
 
-    public void shouldDisplayMessagesInEnglish() {
+    public void shouldDisplayMessagesInEnglish() throws UnsupportedEncodingException {
         // given
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
@@ -31,12 +32,12 @@ public class LanguageTest {
         display.print("input");
 
         // then
-        assertEquals(outputStream.toString(),
+        assertEquals(outputStream.toString("UTF-8"),
                 "Please provide map size in format 'width height'\n" +
                 "Or press enter to set map to default size 3x3.\n");
     }
 
-    public void shouldDisplayMessagesInPolish() {
+    public void shouldDisplayMessagesInPolish() throws UnsupportedEncodingException {
         // given
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
@@ -47,6 +48,6 @@ public class LanguageTest {
         display.print("wrongMove");
 
         // then
-        assertEquals(outputStream.toString(), "Ten ruch jest niepoprawny, proszę podać inną pozycję:\n");
+        assertEquals(outputStream.toString("UTF-8"), "Ten ruch jest niepoprawny, proszę podać inną pozycję:\n");
     }
 }

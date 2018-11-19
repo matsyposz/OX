@@ -7,6 +7,7 @@ import pl.matsyposz.ox.Player;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -70,7 +71,7 @@ public class UserInputTest {
         assertEquals(gameMap.check(0, 0), Character.valueOf('O'));
     }
 
-    public void shouldSetResourceBundleToPolish() {
+    public void shouldSetResourceBundleToPolish() throws UnsupportedEncodingException {
         // given
         String data = "pl";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
@@ -83,10 +84,10 @@ public class UserInputTest {
         display.print("matchDraw");
 
         // then
-        assertEquals(outputStream.toString(), "Mecz kończy się remisem.\n");
+        assertEquals(outputStream.toString("UTF-8"), "Mecz kończy się remisem.\n");
     }
 
-    public void shouldSetResourceBundleToEnglish() {
+    public void shouldSetResourceBundleToEnglish() throws UnsupportedEncodingException {
         // given
         String data = "%@^#%!^#%@!^";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
@@ -99,7 +100,7 @@ public class UserInputTest {
         display.print("matchDraw");
 
         // then
-        assertEquals(outputStream.toString(), "Match ends with a draw.\n");
+        assertEquals(outputStream.toString("UTF-8"), "Match ends with a draw.\n");
     }
 
 
