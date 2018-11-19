@@ -19,6 +19,7 @@ class GameController {
     private final Boolean testData;
     int matchCounter;
     private int moves;
+    private int matchToEndGame;
 
     GameController(UserInput userInput) {
         this.userInput = userInput;
@@ -26,9 +27,10 @@ class GameController {
         this.matchCounter = 1;
         this.players = new ArrayList<>();
         this.testData = false;
+        this.matchToEndGame = 3;
     }
 
-    GameController(GameMap gameMap, Display display, WinConditions winConditions, ArrayList<Player> players, UserInput userInput) {
+    GameController(GameMap gameMap, Display display, WinConditions winConditions, ArrayList<Player> players, UserInput userInput, Integer matchToEndGame) {
         this.gameMap = gameMap;
         this.display = display;
         this.winConditions = winConditions;
@@ -37,6 +39,7 @@ class GameController {
         this.nextMatch = false;
         this.matchCounter = 1;
         this.players = players;
+        this.matchToEndGame = matchToEndGame;
     }
 
     void start() {
@@ -107,7 +110,7 @@ class GameController {
     }
 
     private void endTurn() {
-        if (matchCounter == 4) {
+        if (matchCounter > matchToEndGame) {
             int result = new PlayerComparator().compare(players.get(0), players.get(1));
             if (result > 0) {
                 display.print(players.get(0).getPlayerName(), "gameWin");
