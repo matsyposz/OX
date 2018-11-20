@@ -18,7 +18,7 @@ public class AppTest {
 
         return new Object[][] {
                 {3,3,3,"0 0,0 1,1 1,0 2,2 2,0 0,0 1,1 1,0 2,2 2,0 0,0 1,1 1,0 2,2 2"},
-                {123,100,3,"0 0,0 1,1 1,0 2,2 2,0 0,0 1,1 1,0 2,2 2,0 0,0 1,1 1,0 2,2 2"},
+                {10,10,3,"0 0,0 1,1 1,0 2,2 2,0 0,0 1,1 1,0 2,2 2,0 0,0 1,1 1,0 2,2 2"},
                 {6,7,3,"0 0,0 1,1 1,0 2,2 2,0 0,0 1,1 1,0 2,2 2,0 0,0 1,1 1,0 2,2 2"},
         };
     }
@@ -27,18 +27,37 @@ public class AppTest {
     public static Object[][] dataForOneMatch() {
 
         return new Object[][] {
-                // diagonal wins
-                {3,3,3,"0 0,0 1,1 1,0 2,2 2"},
-                {12,10,3,"0 0,0 1,1 1,0 2,2 2"},
+                // 1. diagonal wins
+                {10,10,3,"0 0,0 1,1 1,0 2,2 2"},
+                // 2.
                 {6,7,3,"0 0,0 1,1 1,0 2,2 2"},
-                // 5 long line, 6x3 map size, win in row
+                // 3. 5 long line, 6x3 map size, win in row
                 {6,3,5,"1 0,0 2,2 0,1 2,3 0,2 2,4 0,3 2,5 0"},
-                // 4x5 map, win in column
+                // 4. 5x6 map, win in column
                 {5,6,3,"2 1,3 0,2 2,3 1,2 3"},
-                // 12x3 map, antidiagonal win
-                {12,4,3,"0 0,3 1,1 0,2 2,3 3,1 3"},
-                // 3x3 map, draw
-                {3,3,3,"0 0,0 1,0 2,1 1,1 0,2 2,2 1,2 0,1 2"}
+                // 5. 10x4 map, anti-diagonal win
+                {10,4,3,"0 0,3 1,1 0,2 2,3 3,1 3"},
+                // 3x3 map:
+                // 6. draw
+                {3,3,3,"0 0,0 1,0 2,1 1,1 0,2 2,2 1,2 0,1 2"},
+                // 7. draw, different moves
+                //{3,3,3,""},
+                // 8. row 0 win
+
+                // 9. row 1 win
+
+                // 10. row 2 win
+
+                // 11. column 0 win
+
+                // 12. column 1 win
+
+                // 13. column 2 win
+
+                // 14. diagonal win
+                {3,3,3,"0 0,0 1,1 1,0 2,2 2"},
+                // 15. anti-diagonal win
+                {3,3,3,"0 0,2 0,1 0,1 1,2 2,0 2"},
         };
     }
 

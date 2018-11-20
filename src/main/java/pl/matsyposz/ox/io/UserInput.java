@@ -23,7 +23,7 @@ public class UserInput {
     public Integer[] readMove() {
         Integer[] coordinates = new Integer[2];
         try {
-            Scanner scanner = new Scanner(inputStream);
+            Scanner scanner = new Scanner(inputStream, "UTF-8");
             String input = scanner.nextLine();
             if (input.equals("/exit")) {
                 throw new UserExitException();
@@ -72,14 +72,10 @@ public class UserInput {
         return null;
     }
 
-    public Integer[] getLastMove() {
-        return lastMove;
-    }
-
     public ResourceBundle language() {
 
         try {
-            Scanner scanner = new Scanner(inputStream);
+            Scanner scanner = new Scanner(inputStream, "UTF-8");
 
             if (scanner.nextLine().equals("pl")) {
                 return ResourceBundle.getBundle("pl.matsyposz.ox.language.LanguageResource_pl", new Locale("pl", "PL"));
@@ -97,14 +93,14 @@ public class UserInput {
         HashMap<String, Integer> mapSize = new HashMap<>();
 
         try {
-            Scanner scanner = new Scanner(inputStream);
+            Scanner scanner = new Scanner(inputStream, "UTF-8");
 
             String input = scanner.nextLine();
             if (!input.equals("")) {
                 int width = Integer.parseInt(input.split(" ")[0]);
                 int height = Integer.parseInt(input.split(" ")[1]);
 
-                if (width <= 200 && height <= 200) {
+                if (width <= 10 && height <= 10) {
                     mapSize.put("width", width);
                     mapSize.put("height", height);
                 } else
@@ -127,7 +123,7 @@ public class UserInput {
 
     public String name() {
         try {
-            Scanner scanner = new Scanner(inputStream);
+            Scanner scanner = new Scanner(inputStream, "UTF-8");
 
             String input = scanner.nextLine();
             if (!input.isEmpty()) {
@@ -145,7 +141,7 @@ public class UserInput {
 
     public Integer scoresToWin() {
         try {
-            Scanner scanner = new Scanner(inputStream);
+            Scanner scanner = new Scanner(inputStream, "UTF-8");
 
            return scanner.nextInt();
 
@@ -155,5 +151,9 @@ public class UserInput {
 
         }
         return 3;
+    }
+
+    public Integer[] getLastMove() {
+        return lastMove;
     }
 }

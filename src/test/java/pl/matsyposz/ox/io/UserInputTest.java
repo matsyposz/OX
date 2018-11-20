@@ -106,7 +106,7 @@ public class UserInputTest {
 
     public void shouldSetCustomMapSize() {
         // given
-        String data = "200 200";
+        String data = "10 10";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         UserInput userInput = new UserInput(System.in);
 
@@ -114,8 +114,8 @@ public class UserInputTest {
         GameMap gameMap = new GameMap(userInput.mapSize());
 
         // then
-        assertEquals(gameMap.width, 200);
-        assertEquals(gameMap.height, 200);
+        assertEquals(gameMap.width, 10);
+        assertEquals(gameMap.height, 10);
     }
 
     public void shouldSetMapTo3x3BecauseCustomMapIsTooLarge() {
