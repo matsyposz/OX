@@ -19,8 +19,6 @@ public class LanguageTest {
     @Mock
     GameMap gameMap;
 
-    //TODO parametrized tests here
-
     public void shouldDisplayMessagesInEnglish() throws UnsupportedEncodingException {
         // given
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -34,7 +32,8 @@ public class LanguageTest {
         // then
         assertEquals(outputStream.toString("UTF-8"),
                 "Please provide map size in format 'width height'\n" +
-                "Or press enter to set map to default size 3x3.\n");
+                        "Or press enter to set map to default size 3x3.\n" +
+                        "Maximum value of width/height is 10\n");
     }
 
     public void shouldDisplayMessagesInPolish() throws UnsupportedEncodingException {

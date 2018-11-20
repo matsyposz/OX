@@ -19,7 +19,8 @@ public class LanguageResource_en extends ListResourceBundle {
                 },
                 {"input",
                         "Please provide map size in format 'width height'\n" +
-                        "Or press enter to set map to default size 3x3.\n"},
+                        "Or press enter to set map to default size 3x3.\n" +
+                                "Maximum value of width/height is 10\n"},
                 {"move"," move:\n"},
                 {"wrongMove","This move is not allowed, please try again:\n"},
                 {"matchWin","The match was won by "},

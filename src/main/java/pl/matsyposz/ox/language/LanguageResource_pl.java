@@ -19,7 +19,7 @@ public class LanguageResource_pl extends ListResourceBundle {
                 {"input",
                         "Proszę wprowadzić rozmiar mapy w formacie 'szerokość wysokość'\n" +
                         "lub wcisnąć enter aby ustawić mape na domyślny rozmiar 3x3.\n" +
-                                "Maksymalny rozmiar szerokości/wysokości to 200\n"},
+                                "Maksymalny rozmiar szerokości/wysokości to 10\n"},
                 {"move"," podaje ruch:\n"},
                 {"wrongMove","Ten ruch jest niepoprawny, proszę podać inną pozycję:\n"},
                 {"matchWin","Wygrywa "},
